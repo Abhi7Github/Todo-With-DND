@@ -47,7 +47,7 @@ const TaskCard = ({ taskData, color, handleRemoveTask, handleUpdateTask }) => {
 
     return (
         <div  key={taskData.id} ref={setNodeRef} style={style}  {...attributes} 
-            className={`${bgColors[color]} p-2 my-1 rounded-md`} >
+            className={`${bgColors[color]} p-2 my-2 rounded-md`} >
             <div className='flex justify-end gap-2  '   >
                 <MdModeEdit size={13} className='cursor-pointer' onClick={handleUpdateClick}/>
                 <IoIosRemove size={15} className='cursor-pointer' onClick={(e) => handleRemoveClick(e,taskData.id)} />

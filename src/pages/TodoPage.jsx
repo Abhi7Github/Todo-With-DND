@@ -6,11 +6,20 @@ import { closestCorners, defaultDropAnimation, DndContext, DragOverlay } from "@
 import TaskCard from '../components/TaskCard';
 import { arrayMove } from "@dnd-kit/sortable";
 import { persistor } from '../redux/store';
+import { BsFillKanbanFill } from "react-icons/bs";
+import { TfiReload } from "react-icons/tfi";
+import { MdOutlineDarkMode } from "react-icons/md";
+import { FiSun } from "react-icons/fi";
+import { FaListUl } from "react-icons/fa6";
+import { FaRegClock } from "react-icons/fa";
+import { MdOutlineDone } from "react-icons/md";
+
+
 
 const sectionsData = [
-    { id: "todo", color: "red", sectionName: "Todo" },
-    { id: "inprogress", color: "blue", sectionName: "Inprogress" },
-    { id: "done", color: "green", sectionName: "Done" }
+    { id: "todo", color: "red", sectionName: "Todo", sectionIcon: FaListUl },
+    { id: "inprogress", color: "blue", sectionName: "Inprogress", sectionIcon: FaRegClock },
+    { id: "done", color: "green", sectionName: "Done", sectionIcon: MdOutlineDone }
 ]
 
 const colors = {
@@ -109,7 +118,7 @@ function TodoPage() {
 
     return (
         <>
-            <div className='relative m-2'>
+            <div className='relative'>
 
                 {loading && (
                     <div className="absolute inset-0 bg-black/20 backdrop-blur-sm flex items-center justify-center z-50">
@@ -118,11 +127,27 @@ function TodoPage() {
                         </div>
                     </div>
                 )}
-                <div className='flex flex-col md:flex-row justify-between items-center mx-10'>
-                    <div></div>
-                    <h1 className='text-3xl text-center font-semibold mt-2'>TODO with DND</h1>
-                    <button className='bg-gray-300 rounded-md px-2 py-1 text-sm cursor-pointer' onClick={handleReset}>Clear and Refetch data</button>
-                </div>
+                <header className='flex flex-col shadow-lg shadow-gray-300 md:flex-row justify-between items-center px-5 py-4'>
+                    <div className='flex gap-2 '>
+                        <BsFillKanbanFill size={35} color='blue' />
+                        <div className='flex flex-col justify-center'>
+                            <h1 className='text-2xl font-bold mb-0 leading-[1.2rem]'>TODO with DND</h1>
+                            <p className='text-sm mt-0 '>Organize tasks. Drag, Drop, Done.</p>
+                        </div>
+                    </div>
+                    <div className='flex gap-2 '>
+                        <button className='bg-blue-500 text-white flex gap-2 items-center rounded-md px-2 py-1 text-sm cursor-pointer' onClick={handleReset}>
+                            <TfiReload /> Clear and Refetch
+                        </button>
+                        <button className='p-1 shadow-md shadow-gray-300 cursor-pointer bg-gray-300 rounded-md'>
+                            <FiSun size={20}/>
+                        </button>
+                        <button className='p-1 shadow-md shadow-gray-300 cursor-pointer bg-gray-300 rounded-md'>
+                            <MdOutlineDarkMode  size={20}/>
+                        </button>
+                    </div>
+
+                </header>
 
                 {error && (
                     <div className="absolute inset-0 bg-red-500/10 backdrop-blur-sm flex items-center justify-center z-50">
@@ -155,10 +180,10 @@ function TodoPage() {
                             </div>
                         ) : null}
                     </DragOverlay>
-                    <div className='my-5 mx-10  grid grid-cols-1 md:grid-cols-3 gap-3'>
+                    <div className='mx-7  my-5    grid grid-cols-1 md:grid-cols-3 gap-3'>
                         {
                             sectionsData.map((sec) => (
-                                <Sections key={sec.id} id={sec.id} color={sec.color} sectionName={sec.sectionName} tasksData={groupedTasks?.[sec.id] || []} />
+                                <Sections key={sec.id} id={sec.id} color={sec.color} sectionName={sec.sectionName} Icon={sec.sectionIcon} tasksData={groupedTasks?.[sec.id] || []} />
                             ))
                         }
                     </div>
