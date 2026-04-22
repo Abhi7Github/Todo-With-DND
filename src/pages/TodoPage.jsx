@@ -44,7 +44,7 @@ function TodoPage() {
     const handleReset = async () => {
         await persistor.purge();   // clear persisted data
         dispatch(fetchAllTasks());    // refetch from API
-      };
+    };
 
     //sorting the tasks in three columns 
     const groupedTasks = useMemo(() => {
@@ -118,10 +118,10 @@ function TodoPage() {
                         </div>
                     </div>
                 )}
-                <div className='flex justify-between items-center mx-10'>
+                <div className='flex flex-col md:flex-row justify-between items-center mx-10'>
                     <div></div>
-                <h1 className='text-3xl text-center font-semibold mt-2'>TODO with DND</h1>
-                <button className='bg-gray-300 rounded-md px-2 py-1 text-sm cursor-pointer' onClick={handleReset}>Clear and Refetch data</button>
+                    <h1 className='text-3xl text-center font-semibold mt-2'>TODO with DND</h1>
+                    <button className='bg-gray-300 rounded-md px-2 py-1 text-sm cursor-pointer' onClick={handleReset}>Clear and Refetch data</button>
                 </div>
 
                 {error && (
