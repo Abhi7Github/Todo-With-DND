@@ -42,7 +42,6 @@ const taskSlice = createSlice({
 
     updateTask: (state, action) => {
       let { id, updatedTask } = action.payload;
-      console.log(updatedTask)
       let updatedTaskData = state.tasks.map(t => {
         if (t.id === id) {
           t.title = updatedTask;
@@ -54,7 +53,6 @@ const taskSlice = createSlice({
 
     updateStatus : (state,action)=>{
       let { id, updatedStatus } = action.payload;
-        console.log(updatedStatus)
         let updatedTaskData = state.tasks.map(t => {
           if (t.id === id) {
             t.status = updatedStatus;
@@ -81,7 +79,6 @@ const taskSlice = createSlice({
       })
       .addCase(fetchAllTasks.rejected, (state, action) => {
         state.loading = false;
-        console.log(action.payload)
         state.error = action.payload;
       })
   }

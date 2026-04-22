@@ -66,7 +66,7 @@ const Sections = ({ id, color, sectionName, tasksData }) => {
                 {
                     id === "todo" && (
                         <>
-                            <button onClick={() => persistor.purge()}>Reload</button>
+                            {/* <button onClick={() => persistor.purge()}>Reload</button> */}
                             <button className='text-2xl cursor-pointer' onClick={() => setShowTaskBox(true)} disabled={showTaskBox} >
                                 <IoIosAdd size={25} />
                             </button>
