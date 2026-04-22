@@ -91,7 +91,7 @@ const Sections = ({ id, color, sectionName, Icon, tasksData }) => {
                 }
             </div>
 
-            <div ref={setNodeRef} className={`p-1 h-[73vh] overflow-y-auto 
+            <div ref={setNodeRef} className={`p-1 min-h-[30vh] md:h-[73vh] overflow-y-auto 
             [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-track]:bg-none ${scrollColors[color]} ${isOver ? "opacity-50" : ""}`}>
                 <SortableContext
                     items={tasksData.map(t => t.id)}

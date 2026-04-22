@@ -120,34 +120,35 @@ function TodoPage() {
         <>
             <div className='relative'>
 
-                {loading && (
-                    <div className="absolute inset-0 bg-black/20 backdrop-blur-sm flex items-center justify-center z-50">
-                        <div className="bg-white px-6 py-3 rounded-md shadow-md text-lg font-semibold">
-                            Loading...
-                        </div>
-                    </div>
-                )}
-                <header className='flex flex-col shadow-lg shadow-gray-300 md:flex-row justify-between items-center px-5 py-4'>
+                <header className='flex shadow-lg shadow-gray-300 justify-between items-center md:px-5 px-3 py-4 '>
                     <div className='flex gap-2 '>
-                        <BsFillKanbanFill size={35} color='blue' />
+                        <BsFillKanbanFill size={35}  color='blue' />
                         <div className='flex flex-col justify-center'>
-                            <h1 className='text-2xl font-bold mb-0 leading-[1.2rem]'>TODO with DND</h1>
-                            <p className='text-sm mt-0 '>Organize tasks. Drag, Drop, Done.</p>
+                            <h1 className='text-md md:text-2xl font-bold mb-0 leading-[1.2rem]'>TODO with DND</h1>
+                            <p className='text-[10px] md:text-sm mt-0 '>Organize tasks. Drag, Drop, Done.</p>
                         </div>
                     </div>
                     <div className='flex gap-2 '>
                         <button className='bg-blue-500 text-white flex gap-2 items-center rounded-md px-2 py-1 text-sm cursor-pointer' onClick={handleReset}>
-                            <TfiReload /> Clear and Refetch
+                            <TfiReload /> <span className='hidden md:flex'>Clear and Refetch</span>
                         </button>
-                        <button className='p-1 shadow-md shadow-gray-300 cursor-pointer bg-gray-300 rounded-md'>
+                        {/* <button className='p-1 shadow-md shadow-gray-300 cursor-pointer bg-gray-300 rounded-md'>
                             <FiSun size={20}/>
-                        </button>
+                        </button> */}
                         <button className='p-1 shadow-md shadow-gray-300 cursor-pointer bg-gray-300 rounded-md'>
                             <MdOutlineDarkMode  size={20}/>
                         </button>
                     </div>
 
                 </header>
+
+                {loading && (
+                    <div className="absolute inset-0 bg-black/20 backdrop-blur-sm flex md:items-center justify-center z-50">
+                        <div className="bg-white px-6 py-3 h-fit rounded-md shadow-md text-lg font-semibold">
+                            Loading...
+                        </div>
+                    </div>
+                )}
 
                 {error && (
                     <div className="absolute inset-0 bg-red-500/10 backdrop-blur-sm flex items-center justify-center z-50">
