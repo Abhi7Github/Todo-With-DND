@@ -5,6 +5,7 @@ import Sections from '../components/Sections';
 import { closestCorners, defaultDropAnimation, DndContext, DragOverlay } from "@dnd-kit/core";
 import TaskCard from '../components/TaskCard';
 import { arrayMove } from "@dnd-kit/sortable";
+import { persistor } from '../redux/store';
 
 const sectionsData = [
     { id: "todo", color: "red", sectionName: "Todo" },
@@ -39,6 +40,11 @@ function TodoPage() {
 
         fetchTasks()
     }, [])
+
+    const handleReset = async () => {
+        await persistor.purge();   // clear persisted data
+        dispatch(fetchAllTasks());    // refetch from API
+      };
 
     //sorting the tasks in three columns 
     const groupedTasks = useMemo(() => {
@@ -103,7 +109,7 @@ function TodoPage() {
 
     return (
         <>
-            <div className='relative'>
+            <div className='relative m-2'>
 
                 {loading && (
                     <div className="absolute inset-0 bg-black/20 backdrop-blur-sm flex items-center justify-center z-50">
@@ -112,7 +118,11 @@ function TodoPage() {
                         </div>
                     </div>
                 )}
+                <div className='flex justify-between items-center mx-10'>
+                    <div></div>
                 <h1 className='text-3xl text-center font-semibold mt-2'>TODO with DND</h1>
+                <button className='bg-gray-300 rounded-md px-2 py-1 text-sm cursor-pointer' onClick={handleReset}>Clear and Refetch data</button>
+                </div>
 
                 {error && (
                     <div className="absolute inset-0 bg-red-500/10 backdrop-blur-sm flex items-center justify-center z-50">

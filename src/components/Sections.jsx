@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addNewTask, deleteTask, updateTask } from '../redux/taskSlice';
 import TaskCard from './TaskCard';
 import { IoIosAdd } from "react-icons/io";
-import { persistor } from '../redux/store';
 import { useDroppable } from "@dnd-kit/core";
 import { SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
 
@@ -66,7 +65,7 @@ const Sections = ({ id, color, sectionName, tasksData }) => {
                 {
                     id === "todo" && (
                         <>
-                            {/* <button onClick={() => persistor.purge()}>Reload</button> */}
+                            
                             <button className='text-2xl cursor-pointer' onClick={() => setShowTaskBox(true)} disabled={showTaskBox} >
                                 <IoIosAdd size={25} />
                             </button>
